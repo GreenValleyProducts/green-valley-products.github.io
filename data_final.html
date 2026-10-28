@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Valley Products - Catalogue Interne</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Consolas, monospace;
+}
+
+body{
+    background:url("snow.png");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    min-height:100vh;
+    color:white;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(15,15,20,0.65);
+    z-index:-2;
+}
+
+.snow{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.flake{
+    position:absolute;
+    color:white;
+    opacity:.8;
+    animation:snowFall linear infinite;
+}
+
+@keyframes snowFall{
+    from{
+        transform:translateY(-100px);
+    }
+    to{
+        transform:translateY(110vh);
+    }
+}
+
+header{
+    text-align:center;
+    background:rgba(0,0,0,.6);
+    backdrop-filter:blur(5px);
+    padding:40px;
+    border-bottom:2px solid #79dfff;
+}
+
+h1{
+    font-size:60px;
+    color:#aeeeff;
+    text-shadow:
+    0 0 20px #7eefff,
+    0 0 40px #00ffff;
+}
+
+.subtitle{
+    margin-top:10px;
+    opacity:.8;
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+    padding:50px;
+}
+
+.category{
+    margin-bottom:60px;
+}
+
+.category h2{
+    margin-bottom:25px;
+    color:#9ae7ff;
+    font-size:40px;
+}
+
+.products{
+    display:flex;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.product{
+    width:400px;
+    background:rgba(0,0,0,.65);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    overflow:hidden;
+    transition:0.3s;
+}
+
+.product:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 25px rgba(140,240,255,.4);
+}
+
+.product img{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+}
+
+.product-content{
+    padding:25px;
+}
+
+.product-content h3{
+    color:#bdefff;
+    margin-bottom:15px;
+}
+
+.product-content p{
+    margin-bottom:10px;
+    line-height:1.5;
+}
+
+.tag{
+    display:inline-block;
+    margin-top:10px;
+    padding:6px 12px;
+    border-radius:20px;
+    background:#18394d;
+    color:#dff9ff;
+}
+
+.footer{
+    text-align:center;
+    padding:50px;
+    opacity:.6;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="snow" id="snow"></div>
+
+<header>
+
+<h1>GREEN VALLEY PRODUCTS</h1>
+
+<div class="subtitle">
+Catalogue de Distribution • Archive Interne
+</div>
+
+</header>
+
+<div class="container">
+
+<div class="category">
+
+<h2>Secteur Nourriture</h2>
+
+<div class="products">
+
+<div class="product">
+
+<img src="product1.png">
+
+<div class="product-content">
+
+<h3>Secteur A-2</h3>
+
+<p>
+Produit nutritionnel enrichi de génération IV.
+</p>
+
+<p>
+Prix : 89,99€
+</p>
+
+<p>
+Provenance : Entité 12
+</p>
+
+<p>
+Centre de production : Zone Polaris-7
+</p>
+
+<p>
+Statut : Distribution mondiale.
+</p>
+
+<span class="tag">Référence GVP-A2</span>
+
+</div>
+
+</div>
+
+<div class="product">
+
+<img src="product2.png">
+
+<div class="product-content">
+
+<h3>Secteur H-15</h3>
+
+<p>
+Substitut protéiné organique à croissance accélérée.
+</p>
+
+<p>
+Prix : 129,99€
+</p>
+
+<p>
+Provenance : Entité 08
+</p>
+
+<p>
+Centre de production : Complexe Hélios
+</p>
+
+<p>
+Statut : Distribution approuvée.
+</p>
+
+<span class="tag">Référence GVP-H15</span>
+
+</div>
+
+</div>
+
+<div class="product">
+
+<img src="product3.png">
+
+<div class="product-content">
+
+<h3>Secteur E-8</h3>
+
+<p>
+Produit bio-adaptatif destiné aux besoins nutritionnels avancés.
+</p>
+
+<p>
+Prix : 179,99€
+</p>
+
+<p>
+Provenance : Entité 21
+</p>
+
+<p>
+Centre de production : Installation Eureka
+</p>
+
+<p>
+Statut : Production limitée.
+</p>
+
+<span class="tag">Référence GVP-E8</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+GREEN VALLEY PRODUCTS • DIVISION ALIMENTAIRE • ARCHIVE INTERNE
+</div>
+
+<script>
+
+const snow = document.getElementById("snow");
+
+for(let i=0;i<120;i++){
+
+    const flake=document.createElement("div");
+
+    flake.className="flake";
+
+    flake.innerHTML="❄";
+
+    flake.style.left=Math.random()*100+"vw";
+
+    flake.style.fontSize=
+    8+Math.random()*18+"px";
+
+    flake.style.animationDuration=
+    5+Math.random()*15+"s";
+
+    flake.style.animationDelay=
+    Math.random()*10+"s";
+
+    snow.appendChild(flake);
+}
+
+</script>
+
+</body>
+</html>
