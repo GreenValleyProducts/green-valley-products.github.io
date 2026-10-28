@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Green Valley Products - Data Access</title>
+<title>GREEN VALLEY PRODUCTS - DATA ACCESS</title>
 
 <style>
 
@@ -18,8 +18,9 @@ body{
     background-size:cover;
     background-position:center;
     background-attachment:fixed;
-    color:#f5d7d7;
     min-height:100vh;
+    overflow-x:hidden;
+    color:#ffd2d2;
 }
 
 body::before{
@@ -28,71 +29,89 @@ body::before{
     inset:0;
     background:
     linear-gradient(
-        rgba(40,0,0,.8),
-        rgba(0,0,0,.85)
+        rgba(90,0,0,.75),
+        rgba(0,0,0,.92)
     );
-    z-index:-1;
+    z-index:-2;
 }
 
-header{
-    background:rgba(30,0,0,.95);
-    border-bottom:4px solid #700;
-    padding:30px;
-    text-align:center;
-    box-shadow:0 0 40px rgba(255,0,0,.4);
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    repeating-linear-gradient(
+        0deg,
+        rgba(255,0,0,.03) 0px,
+        rgba(255,0,0,.03) 1px,
+        transparent 2px,
+        transparent 4px
+    );
+    pointer-events:none;
+}
+
+.blood1,
+.blood2,
+.blood3{
+    position:fixed;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    filter:blur(80px);
+    background:rgba(255,0,0,.15);
+    pointer-events:none;
+}
+
+.blood1{
+    left:-100px;
+    top:50px;
+}
+
+.blood2{
+    right:-100px;
+    top:250px;
+}
+
+.blood3{
+    left:40%;
+    bottom:-120px;
+}
+
+#container{
+    width:1000px;
+    max-width:95%;
+    margin:auto;
+    margin-top:60px;
+    background:rgba(25,0,0,.88);
+    backdrop-filter:blur(5px);
+    border:2px solid #700;
+    padding:40px;
+    box-shadow:
+    0 0 40px rgba(255,0,0,.25),
+    inset 0 0 40px rgba(255,0,0,.1);
 }
 
 h1{
-    font-size:60px;
-    color:#ff4444;
+    text-align:center;
+    font-size:50px;
+    color:#ff5555;
     text-shadow:
-    0 0 10px red,
-    0 0 30px darkred;
+    0 0 8px red,
+    0 0 20px darkred;
+    margin-bottom:10px;
 }
 
 .subtitle{
-    margin-top:10px;
-    opacity:0.7;
-}
-
-.container{
-    width:1100px;
-    max-width:95%;
-    margin:auto;
-    margin-top:40px;
-}
-
-.section{
-    background:rgba(20,0,0,.85);
-    border:2px solid #660000;
-    padding:25px;
-    margin-bottom:30px;
-    box-shadow:
-    0 0 25px rgba(255,0,0,.15);
-}
-
-.section h2{
-    color:#ff6666;
-    margin-bottom:15px;
-}
-
-.section p{
-    line-height:1.7;
-}
-
-.file{
-    background:black;
-    border-left:5px solid red;
-    margin-top:15px;
-    padding:15px;
-    color:#ff8888;
+    text-align:center;
+    margin-bottom:40px;
+    color:#aa6666;
 }
 
 .warning{
     text-align:center;
-    margin:40px 0;
-    color:red;
-    font-size:30px;
+    color:#ff2222;
+    font-size:24px;
+    margin-bottom:25px;
     animation:pulse 2s infinite;
 }
 
@@ -112,9 +131,93 @@ h1{
 
 }
 
+h2{
+    color:#ff7777;
+    margin-bottom:15px;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    background:#0a0000;
+    border:1px solid #900;
+    color:#fff;
+    margin-top:15px;
+    margin-bottom:20px;
+    font-size:18px;
+}
+
+button{
+    padding:12px 25px;
+    border:none;
+    background:#8b0000;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#b10000;
+}
+
+.section{
+    padding:25px;
+    background:rgba(0,0,0,.35);
+    border-left:4px solid darkred;
+    margin-top:20px;
+}
+
+.shape{
+    width:50px;
+    height:50px;
+    display:inline-block;
+    margin:10px;
+}
+
+.circle{
+    border-radius:50%;
+    background:#ff5555;
+    box-shadow:0 0 10px red;
+}
+
+.square{
+    background:#444;
+}
+
+#shapeContainer,
+#dnaContainer{
+    margin-top:20px;
+}
+
+#dnaContainer p{
+    padding:8px;
+    color:#ffaaaa;
+}
+
+#captcha2,
+#captcha3,
+#success{
+    display:none;
+}
+
+.success{
+    text-align:center;
+}
+
+.success h1{
+    color:#ff9999;
+}
+
+.file{
+    margin-top:20px;
+    padding:15px;
+    background:#060000;
+    border-left:4px solid red;
+}
+
 footer{
     text-align:center;
-    padding:30px;
+    margin-top:40px;
     opacity:.5;
 }
 
@@ -123,65 +226,110 @@ footer{
 
 <body>
 
+<div class="blood1"></div>
+<div class="blood2"></div>
+<div class="blood3"></div>
+
 <div id="container">
 
-<h1>ACCÈS AUX DONNÉES INTERNES</h1>
+<h1>GREEN VALLEY PRODUCTS</h1>
 
-<div id="captcha1">
+<p class="subtitle">
+ARCHIVES BIOLOGIQUES INTERNES
+</p>
 
-<h2>Étape 1/3</h2>
+<div class="warning">
+ACCÈS NON AUTORISÉ DÉTECTÉ
+</div>
 
-<p>Décodez la chaîne suivante :</p>
+<div class="file">
+DOSSIER : GVP-BIO-014<br>
+STATUT : CONFIDENTIEL<br>
+NIVEAU D'ACCÈS : C
+</div>
 
-<p><b>UHJvY8OocyBkZSAyMDAy</b></p>
+<div id="captcha1" class="section">
+
+<h2>ÉTAPE 1 / 3</h2>
+
+<p>
+Décodez la chaîne suivante :
+</p>
+
+<p>
+<b>UHJvY8OocyBkZSAyMDAy</b>
+</p>
 
 <input type="text" id="q1">
 
-<button onclick="check1()">Valider</button>
+<button onclick="check1()">
+Valider
+</button>
 
 </div>
 
-<div id="captcha2">
+<div id="captcha2" class="section">
 
-<h2>Étape 2/3</h2>
+<h2>ÉTAPE 2 / 3</h2>
 
-<p>Combien de ronds voyez-vous ?</p>
+<p>
+Combien de cellules circulaires voyez-vous ?
+</p>
 
 <div id="shapeContainer"></div>
 
 <input type="text" id="q2">
 
-<button onclick="check2()">Valider</button>
+<button onclick="check2()">
+Valider
+</button>
 
 </div>
 
-<div id="captcha3">
+<div id="captcha3" class="section">
 
-<h2>Étape 3/3</h2>
+<h2>ÉTAPE 3 / 3</h2>
 
-<p>Combien de chaînes ADN sont incorrectes ?</p>
+<p>
+Combien de séquences ADN sont corrompues ?
+</p>
 
 <div id="dnaContainer"></div>
 
 <input type="text" id="q3">
 
-<button onclick="check3()">Valider</button>
+<button onclick="check3()">
+Valider
+</button>
 
 </div>
 
-<div id="success">
+<div id="success" class="success">
 
 <h1>ACCÈS AUTORISÉ</h1>
 
+<br>
+
 <p>
-Connexion aux archives Green Valley Products...
+Connexion au serveur biologique...
 </p>
 
 <p>
-Chargement de data_final.html
+Chargement des archives expérimentales...
+</p>
+
+<p>
+Ouverture de data_final.html
 </p>
 
 </div>
+
+<footer>
+
+GREEN VALLEY PRODUCTS<br>
+DÉPARTEMENT DE CROISSANCE ORGANIQUE
+
+</footer>
 
 </div>
 
@@ -192,105 +340,162 @@ let wrongDNA = 0;
 
 function check1(){
 
-    let r = document.getElementById("q1").value.trim().toLowerCase();
+let r =
+document.getElementById("q1")
+.value
+.trim()
+.toLowerCase();
 
-    if(r === "procès de 2002" || r === "proces de 2002"){
+if(
+r === "procès de 2002" ||
+r === "proces de 2002"
+){
 
-        document.getElementById("captcha1").style.display="none";
-        document.getElementById("captcha2").style.display="block";
+document.getElementById("captcha1")
+.style.display="none";
 
-    }else{
+document.getElementById("captcha2")
+.style.display="block";
 
-        alert("Réponse incorrecte");
+}else{
 
-    }
+alert("Réponse incorrecte");
+
+}
+
 }
 
 for(let i=0;i<20;i++){
 
-    let div = document.createElement("div");
+let div = document.createElement("div");
 
-    if(Math.random() < 0.45){
+if(Math.random() < 0.45){
 
-        div.className = "shape circle";
-        circles++;
+div.className =
+"shape circle";
 
-    }else{
+circles++;
 
-        div.className = "shape square";
+}else{
 
-    }
+div.className =
+"shape square";
 
-    document.getElementById("shapeContainer").appendChild(div);
+}
+
+document
+.getElementById("shapeContainer")
+.appendChild(div);
+
 }
 
 function check2(){
 
-    if(Number(document.getElementById("q2").value) === circles){
+if(
+Number(
+document
+.getElementById("q2")
+.value
+) === circles
+){
 
-        document.getElementById("captcha2").style.display="none";
-        document.getElementById("captcha3").style.display="block";
+document.getElementById("captcha2")
+.style.display="none";
 
-    }else{
+document.getElementById("captcha3")
+.style.display="block";
 
-        alert("Réponse incorrecte");
+}else{
 
-    }
+alert("Réponse incorrecte");
+
 }
 
-let bases = ["A","T","C","G"];
+}
+
+let bases =
+["A","T","C","G"];
 
 for(let i=0;i<8;i++){
 
-    let valid = Math.random() < 0.6;
+let valid =
+Math.random() < 0.6;
 
-    let txt = "";
+let txt = "";
 
-    if(valid){
+if(valid){
 
-        for(let j=0;j<12;j++){
+for(let j=0;j<12;j++){
 
-            txt += bases[Math.floor(Math.random()*4)];
+txt +=
+bases[
+Math.floor(
+Math.random()*4
+)
+];
 
-        }
+}
 
-    }else{
+}else{
 
-        wrongDNA++;
+wrongDNA++;
 
-        let chars = "ATCGXYZ012345";
+let chars =
+"ATCGXYZ012345";
 
-        for(let j=0;j<12;j++){
+for(let j=0;j<12;j++){
 
-            txt += chars[Math.floor(Math.random()*chars.length)];
+txt +=
+chars[
+Math.floor(
+Math.random()*chars.length
+)
+];
 
-        }
-    }
+}
 
-    let p = document.createElement("p");
-    p.textContent = txt;
+}
 
-    document.getElementById("dnaContainer").appendChild(p);
+let p =
+document.createElement("p");
+
+p.textContent = txt;
+
+document
+.getElementById("dnaContainer")
+.appendChild(p);
+
 }
 
 function check3(){
 
-    if(Number(document.getElementById("q3").value) === wrongDNA){
+if(
+Number(
+document
+.getElementById("q3")
+.value
+) === wrongDNA
+){
 
-        document.getElementById("captcha3").style.display="none";
-        document.getElementById("success").style.display="block";
+document.getElementById("captcha3")
+.style.display="none";
 
-        setTimeout(() => {
+document.getElementById("success")
+.style.display="block";
 
-            window.location.href = "data_final.html";
+setTimeout(() => {
 
-        },3000);
+window.location.href =
+"data_final.html";
 
-    }else{
+},3000);
 
-        alert("Réponse incorrecte");
+}else{
 
-    }
+alert("Réponse incorrecte");
+
+}
+
 }
 
 </script>
