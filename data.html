@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Green Valley Products - Data Access</title>
+
 <style>
 
 *{
@@ -113,3 +119,181 @@ footer{
 }
 
 </style>
+</head>
+
+<body>
+
+<div id="container">
+
+<h1>ACCÈS AUX DONNÉES INTERNES</h1>
+
+<div id="captcha1">
+
+<h2>Étape 1/3</h2>
+
+<p>Décodez la chaîne suivante :</p>
+
+<p><b>UHJvY8OocyBkZSAyMDAy</b></p>
+
+<input type="text" id="q1">
+
+<button onclick="check1()">Valider</button>
+
+</div>
+
+<div id="captcha2">
+
+<h2>Étape 2/3</h2>
+
+<p>Combien de ronds voyez-vous ?</p>
+
+<div id="shapeContainer"></div>
+
+<input type="text" id="q2">
+
+<button onclick="check2()">Valider</button>
+
+</div>
+
+<div id="captcha3">
+
+<h2>Étape 3/3</h2>
+
+<p>Combien de chaînes ADN sont incorrectes ?</p>
+
+<div id="dnaContainer"></div>
+
+<input type="text" id="q3">
+
+<button onclick="check3()">Valider</button>
+
+</div>
+
+<div id="success">
+
+<h1>ACCÈS AUTORISÉ</h1>
+
+<p>
+Connexion aux archives Green Valley Products...
+</p>
+
+<p>
+Chargement de data_final.html
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+let circles = 0;
+let wrongDNA = 0;
+
+function check1(){
+
+    let r = document.getElementById("q1").value.trim().toLowerCase();
+
+    if(r === "procès de 2002" || r === "proces de 2002"){
+
+        document.getElementById("captcha1").style.display="none";
+        document.getElementById("captcha2").style.display="block";
+
+    }else{
+
+        alert("Réponse incorrecte");
+
+    }
+}
+
+for(let i=0;i<20;i++){
+
+    let div = document.createElement("div");
+
+    if(Math.random() < 0.45){
+
+        div.className = "shape circle";
+        circles++;
+
+    }else{
+
+        div.className = "shape square";
+
+    }
+
+    document.getElementById("shapeContainer").appendChild(div);
+}
+
+function check2(){
+
+    if(Number(document.getElementById("q2").value) === circles){
+
+        document.getElementById("captcha2").style.display="none";
+        document.getElementById("captcha3").style.display="block";
+
+    }else{
+
+        alert("Réponse incorrecte");
+
+    }
+}
+
+let bases = ["A","T","C","G"];
+
+for(let i=0;i<8;i++){
+
+    let valid = Math.random() < 0.6;
+
+    let txt = "";
+
+    if(valid){
+
+        for(let j=0;j<12;j++){
+
+            txt += bases[Math.floor(Math.random()*4)];
+
+        }
+
+    }else{
+
+        wrongDNA++;
+
+        let chars = "ATCGXYZ012345";
+
+        for(let j=0;j<12;j++){
+
+            txt += chars[Math.floor(Math.random()*chars.length)];
+
+        }
+    }
+
+    let p = document.createElement("p");
+    p.textContent = txt;
+
+    document.getElementById("dnaContainer").appendChild(p);
+}
+
+function check3(){
+
+    if(Number(document.getElementById("q3").value) === wrongDNA){
+
+        document.getElementById("captcha3").style.display="none";
+        document.getElementById("success").style.display="block";
+
+        setTimeout(() => {
+
+            window.location.href = "data_final.html";
+
+        },3000);
+
+    }else{
+
+        alert("Réponse incorrecte");
+
+    }
+}
+
+</script>
+
+</body>
+</html>
