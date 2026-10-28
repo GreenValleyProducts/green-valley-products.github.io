@@ -46,6 +46,35 @@ body::before{
     animation:snowFall linear infinite;
 }
 
+.next-container{
+    display:flex;
+    justify-content:center;
+    margin-top:50px;
+}
+
+.next-button{
+    padding:18px 50px;
+    font-size:24px;
+    color:white;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    background:linear-gradient(
+        180deg,
+        #9ae7ff,
+        #4faad1
+    );
+    box-shadow:
+    0 0 20px rgba(100,220,255,.6);
+    transition:.3s;
+}
+
+.next-button:hover{
+    transform:translateY(-3px);
+    box-shadow:
+    0 0 35px rgba(100,220,255,.9);
+}
+
 @keyframes snowFall{
     from{
         transform:translateY(-100px);
@@ -194,7 +223,7 @@ Provenance : Entité 12
 </p>
 
 <p>
-Centre de production : Zone Polaris-7
+Centre de production : Zone Jardin-6
 </p>
 
 <p>
@@ -228,11 +257,11 @@ Provenance : Entité 08
 </p>
 
 <p>
-Centre de production : Complexe Hélios
+Centre de production : Couloir du Jugement
 </p>
 
 <p>
-Statut : Distribution approuvée.
+Statut : Distribution massive.
 </p>
 
 <span class="tag">Référence GVP-H15</span>
@@ -262,7 +291,7 @@ Provenance : Entité 21
 </p>
 
 <p>
-Centre de production : Installation Eureka
+Centre de production : Installation Aqua
 </p>
 
 <p>
@@ -281,6 +310,14 @@ Statut : Production limitée.
 
 </div>
 
+<div class="next-container">
+    <button
+        class="next-button"
+        onclick="window.location.href='captcha2.html'">
+        Suivant →
+    </button>
+</div>
+    
 <div class="footer">
 GREEN VALLEY PRODUCTS • DIVISION ALIMENTAIRE • ARCHIVE INTERNE
 </div>
