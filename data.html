@@ -1,247 +1,115 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<title>Green Valley Products - Data Access</title>
-
 <style>
-body{
-    background:#0d1117;
-    color:#00ff88;
-    font-family:Consolas, monospace;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
+
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Consolas, monospace;
 }
 
-#container{
-    width:900px;
-    background:#111827;
-    padding:40px;
-    border:2px solid #00ff88;
-    box-shadow:0 0 25px #00ff8850;
+body{
+    background:url("bg2.png");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    color:#f5d7d7;
+    min-height:100vh;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    linear-gradient(
+        rgba(40,0,0,.8),
+        rgba(0,0,0,.85)
+    );
+    z-index:-1;
+}
+
+header{
+    background:rgba(30,0,0,.95);
+    border-bottom:4px solid #700;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 0 40px rgba(255,0,0,.4);
 }
 
 h1{
-    text-align:center;
+    font-size:60px;
+    color:#ff4444;
+    text-shadow:
+    0 0 10px red,
+    0 0 30px darkred;
 }
 
-input{
-    width:100%;
-    padding:12px;
-    margin-top:15px;
+.subtitle{
+    margin-top:10px;
+    opacity:0.7;
+}
+
+.container{
+    width:1100px;
+    max-width:95%;
+    margin:auto;
+    margin-top:40px;
+}
+
+.section{
+    background:rgba(20,0,0,.85);
+    border:2px solid #660000;
+    padding:25px;
+    margin-bottom:30px;
+    box-shadow:
+    0 0 25px rgba(255,0,0,.15);
+}
+
+.section h2{
+    color:#ff6666;
     margin-bottom:15px;
-    background:#0d1117;
-    color:#00ff88;
-    border:1px solid #00ff88;
 }
 
-button{
-    padding:10px 20px;
-    background:#00cc66;
-    border:none;
-    cursor:pointer;
+.section p{
+    line-height:1.7;
 }
 
-#captcha2,
-#captcha3,
-#success{
-    display:none;
+.file{
+    background:black;
+    border-left:5px solid red;
+    margin-top:15px;
+    padding:15px;
+    color:#ff8888;
 }
 
-.shape{
-    width:50px;
-    height:50px;
-    display:inline-block;
-    margin:10px;
+.warning{
+    text-align:center;
+    margin:40px 0;
+    color:red;
+    font-size:30px;
+    animation:pulse 2s infinite;
 }
 
-.circle{
-    border-radius:50%;
-    background:#00ff88;
+@keyframes pulse{
+
+    0%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:.4;
+    }
+
+    100%{
+        opacity:1;
+    }
+
 }
 
-.square{
-    background:#0099ff;
+footer{
+    text-align:center;
+    padding:30px;
+    opacity:.5;
 }
+
 </style>
-</head>
-
-<body>
-
-<div id="container">
-
-<h1>ACCÈS AUX DONNÉES INTERNES</h1>
-
-<div id="captcha1">
-
-<h2>Étape 1/3</h2>
-
-<p>Décodez la chaîne suivante :</p>
-
-<p><b>UHJvY8OocyBkZSAyMDAy</b></p>
-
-<input type="text" id="q1">
-
-<button onclick="check1()">Valider</button>
-
-</div>
-
-<div id="captcha2">
-
-<h2>Étape 2/3</h2>
-
-<p>Combien de ronds voyez-vous ?</p>
-
-<div id="shapeContainer"></div>
-
-<input type="text" id="q2">
-
-<button onclick="check2()">Valider</button>
-
-</div>
-
-<div id="captcha3">
-
-<h2>Étape 3/3</h2>
-
-<p>Combien de chaînes ADN sont incorrectes ?</p>
-
-<div id="dnaContainer"></div>
-
-<input type="text" id="q3">
-
-<button onclick="check3()">Valider</button>
-
-</div>
-
-<div id="success">
-
-<h1>ACCÈS AUTORISÉ</h1>
-
-<p>
-Connexion aux archives Green Valley Products...
-</p>
-
-<p>
-Chargement de data_final.html
-</p>
-
-</div>
-
-</div>
-
-<script>
-
-let circles = 0;
-let wrongDNA = 0;
-
-function check1(){
-
-    let r = document.getElementById("q1").value.trim().toLowerCase();
-
-    if(r === "procès de 2002" || r === "proces de 2002"){
-
-        document.getElementById("captcha1").style.display="none";
-        document.getElementById("captcha2").style.display="block";
-
-    }else{
-
-        alert("Réponse incorrecte");
-
-    }
-}
-
-for(let i=0;i<20;i++){
-
-    let div = document.createElement("div");
-
-    if(Math.random() < 0.45){
-
-        div.className = "shape circle";
-        circles++;
-
-    }else{
-
-        div.className = "shape square";
-
-    }
-
-    document.getElementById("shapeContainer").appendChild(div);
-}
-
-function check2(){
-
-    if(Number(document.getElementById("q2").value) === circles){
-
-        document.getElementById("captcha2").style.display="none";
-        document.getElementById("captcha3").style.display="block";
-
-    }else{
-
-        alert("Réponse incorrecte");
-
-    }
-}
-
-let bases = ["A","T","C","G"];
-
-for(let i=0;i<8;i++){
-
-    let valid = Math.random() < 0.6;
-
-    let txt = "";
-
-    if(valid){
-
-        for(let j=0;j<12;j++){
-
-            txt += bases[Math.floor(Math.random()*4)];
-
-        }
-
-    }else{
-
-        wrongDNA++;
-
-        let chars = "ATCGXYZ012345";
-
-        for(let j=0;j<12;j++){
-
-            txt += chars[Math.floor(Math.random()*chars.length)];
-
-        }
-    }
-
-    let p = document.createElement("p");
-    p.textContent = txt;
-
-    document.getElementById("dnaContainer").appendChild(p);
-}
-
-function check3(){
-
-    if(Number(document.getElementById("q3").value) === wrongDNA){
-
-        document.getElementById("captcha3").style.display="none";
-        document.getElementById("success").style.display="block";
-
-        setTimeout(() => {
-
-            window.location.href = "data_final.html";
-
-        },3000);
-
-    }else{
-
-        alert("Réponse incorrecte");
-
-    }
-}
-
-</script>
-
-</body>
-</html>
