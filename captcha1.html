@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>SECURITY CHECKPOINT</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Consolas, monospace;
+}
+
+body{
+    background:black;
+    color:#ff4d4d;
+    overflow:hidden;
+    min-height:100vh;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,.03) 0px,
+        rgba(255,255,255,.03) 1px,
+        transparent 2px,
+        transparent 4px
+    );
+    pointer-events:none;
+}
+
+.glitch-bg{
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at center,
+    rgba(255,0,0,.15),
+    transparent 70%);
+    animation:flash .25s infinite alternate;
+}
+
+@keyframes flash{
+    from{
+        opacity:.7;
+    }
+    to{
+        opacity:1;
+    }
+}
+
+.crack{
+    position:fixed;
+    font-size:250px;
+    color:rgba(255,255,255,.08);
+    pointer-events:none;
+}
+
+.c1{
+    top:-40px;
+    left:-20px;
+}
+
+.c2{
+    bottom:-40px;
+    right:-20px;
+}
+
+.container{
+    width:1000px;
+    max-width:95%;
+    margin:auto;
+    margin-top:40px;
+    background:rgba(10,0,0,.9);
+    border:2px solid darkred;
+    padding:40px;
+    box-shadow:
+    0 0 40px rgba(255,0,0,.3),
+    inset 0 0 50px rgba(255,0,0,.15);
+}
+
+h1{
+    text-align:center;
+    color:#ff2222;
+    font-size:60px;
+    animation:glitch 0.15s infinite;
+}
+
+@keyframes glitch{
+    0%{transform:translate(1px,0);}
+    25%{transform:translate(-1px,1px);}
+    50%{transform:translate(1px,-1px);}
+    75%{transform:translate(-2px,0);}
+    100%{transform:translate(1px,1px);}
+}
+
+.warning{
+    text-align:center;
+    margin-top:20px;
+    margin-bottom:30px;
+    color:#ff7777;
+}
+
+.question{
+    margin-bottom:35px;
+    padding:20px;
+    background:rgba(255,0,0,.05);
+    border-left:4px solid red;
+}
+
+.question h3{
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    margin-top:10px;
+}
+
+button{
+    width:100%;
+    padding:20px;
+    border:none;
+    background:darkred;
+    color:white;
+    cursor:pointer;
+    font-size:20px;
+}
+
+button:hover{
+    background:red;
+}
+
+.result{
+    margin-top:25px;
+    text-align:center;
+    font-size:22px;
+}
+
+.error{
+    position:fixed;
+    color:red;
+    font-size:18px;
+    opacity:.15;
+    animation:blink .6s infinite;
+}
+
+@keyframes blink{
+    50%{
+        opacity:.01;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="glitch-bg"></div>
+
+<div class="crack c1">✦</div>
+<div class="crack c2">✦</div>
+
+<div class="error" style="left:5%;top:10%;">ERROR 014</div>
+<div class="error" style="left:70%;top:20%;">DATA CORRUPTED</div>
+<div class="error" style="left:15%;top:80%;">ACCESS DENIED</div>
+<div class="error" style="left:80%;top:70%;">BIO ERROR</div>
+
+<div class="container">
+
+<h1>SECURITY CHECKPOINT</h1>
+
+<div class="warning">
+Vérification de l'identité de l'utilisateur en cours...
+</div>
+
+<form id="quiz">
+
+<div class="question">
+<h3>1. Quelle est la date officielle de création de Green Valley Products ?</h3>
+<label><input type="radio" name="q1" value="0"> 2001</label>
+<label><input type="radio" name="q1" value="1"> 2003</label>
+<label><input type="radio" name="q1" value="0"> 2008</label>
+<label><input type="radio" name="q1" value="0"> 1998</label>
+</div>
+
+<div class="question">
+<h3>2. Où est situé le siège mondial ?</h3>
+<label><input type="radio" name="q2" value="0"> Alaska</label>
+<label><input type="radio" name="q2" value="1"> Sibérie</label>
+<label><input type="radio" name="q2" value="0"> Australie</label>
+<label><input type="radio" name="q2" value="0"> Canada</label>
+</div>
+
+<div class="question">
+<h3>3. Combien de pays sont approvisionnés ?</h3>
+<label><input type="radio" name="q3" value="0"> 120</label>
+<label><input type="radio" name="q3" value="0"> 150</label>
+<label><input type="radio" name="q3" value="1"> 190+</label>
+<label><input type="radio" name="q3" value="0"> 230</label>
+</div>
+
+<div class="question">
+<h3>4. Quel est le produit du secteur H-15 ?</h3>
+<label><input type="radio" name="q4" value="0"> Produit bio-adaptatif</label>
+<label><input type="radio" name="q4" value="1"> Substitut protéiné organique</label>
+<label><input type="radio" name="q4" value="0"> Complément végétal</label>
+<label><input type="radio" name="q4" value="0"> Produit aquatique</label>
+</div>
+
+<div class="question">
+<h3>5. Quel est le slogan de Green Valley Products ?</h3>
+<label><input type="radio" name="q5" value="1"> Nourrir aujourd'hui. Optimiser demain.</label>
+<label><input type="radio" name="q5" value="0"> Le futur est vert.</label>
+<label><input type="radio" name="q5" value="0"> Nourrir la planète.</label>
+<label><input type="radio" name="q5" value="0"> L'avenir est organique.</label>
+</div>
+
+<button type="button" onclick="checkQuiz()">
+VALIDER LE TEST
+</button>
+
+</form>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<script>
+
+function checkQuiz(){
+
+let score = 0;
+
+for(let i=1;i<=5;i++){
+
+let answer =
+document.querySelector(
+'input[name="q'+i+'"]:checked'
+);
+
+if(answer){
+score += Number(answer.value);
+}
+
+}
+
+if(score >= 4){
+
+document.getElementById("result").innerHTML =
+"Vérification validée. Redirection...";
+
+setTimeout(()=>{
+window.location.href="captcha2.html";
+},2500);
+
+}else{
+
+document.getElementById("result").innerHTML =
+"Score insuffisant : " + score + "/5";
+
+}
+
+}
+
+setInterval(()=>{
+
+if(Math.random()<0.2){
+
+document.body.style.filter=
+"hue-rotate("+
+(Math.random()*40-20)+
+"deg)";
+
+setTimeout(()=>{
+document.body.style.filter="none";
+},100);
+
+}
+
+},300);
+
+</script>
+
+</body>
+</html>
