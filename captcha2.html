@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>GREEN VALLEY PRODUCTS — CAPTCHA 02</title>
+<style>
+:root{
+  --ink:#030405;--panel:rgba(4,5,6,.94);--line:rgba(190,205,210,.32);
+  --text:#d8dddf;--muted:#7f898d;--bright:#f0f4f5;--signal:#aebbc0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:#020303}
+body{
+  margin:0;min-height:100vh;overflow-x:hidden;color:var(--text);
+  background:#020303;font-family:Consolas,"Courier New",monospace;
+  position:relative;isolation:isolate;
+}
+body:before{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+    repeating-linear-gradient(0deg,transparent 0 2px,rgba(205,220,224,.09) 3px,transparent 4px),
+    repeating-linear-gradient(90deg,transparent 0 13px,rgba(190,205,210,.035) 14px,transparent 15px),
+    radial-gradient(ellipse at 50% 115%,rgba(120,145,152,.19),transparent 52%),
+    #020303;
+}
+body:after{
+  content:"";position:fixed;inset:0;z-index:7;pointer-events:none;opacity:.42;
+  background:
+    repeating-linear-gradient(0deg,transparent 0 5px,rgba(225,235,238,.12) 6px,transparent 7px),
+    repeating-linear-gradient(90deg,transparent 0 41px,rgba(220,230,232,.06) 42px,transparent 43px);
+  mix-blend-mode:screen;
+}
+.glow{position:fixed;inset:auto;pointer-events:none;z-index:-1;width:100vw;height:24vh;filter:blur(26px);
+  background:linear-gradient(90deg,transparent,rgba(135,157,164,.09),transparent);opacity:.7}
+.glow.one{left:0;top:18%}.glow.two{right:0;top:68%;background:linear-gradient(90deg,transparent,rgba(180,190,194,.08),transparent)}
+#container{
+  width:min(1040px,94%);margin:34px auto;padding:clamp(18px,4vw,40px);
+  background:rgba(3,4,5,.91);border:1px solid rgba(174,190,195,.36);
+  box-shadow:0 0 0 1px rgba(255,255,255,.025),0 18px 80px #000,inset 0 0 36px rgba(170,190,196,.035);
+  position:relative;overflow:hidden;
+}
+#container:before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;
+  background:
+    repeating-linear-gradient(0deg,transparent 0 18px,rgba(210,222,225,.12) 19px,transparent 20px),
+    linear-gradient(90deg,transparent 0 78%,rgba(225,235,238,.08) 78.2%,transparent 79%);
+}
+#container:after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:24px;pointer-events:none;opacity:.42;
+  background:repeating-linear-gradient(90deg,transparent 0 18px,rgba(200,215,219,.8) 19px 24px,transparent 25px 43px);
+  clip-path:polygon(0 60%,8% 60%,8% 30%,18% 30%,18% 75%,34% 75%,34% 45%,50% 45%,50% 80%,66% 80%,66% 25%,83% 25%,83% 60%,100% 60%,100% 100%,0 100%);
+}
+header{text-align:center;border-bottom:1px solid var(--line);padding-bottom:22px;margin-bottom:24px;position:relative}
+.brand{
+  font-size:clamp(25px,5vw,45px);font-weight:900;letter-spacing:.08em;color:#e2e7e9;
+  text-shadow:2px 0 rgba(255,255,255,.42),-2px 0 rgba(135,155,162,.45),0 0 16px rgba(220,235,238,.18);
+  animation:brandJitter 8s infinite;
+}
+.subtitle{font-size:11px;letter-spacing:.22em;color:#899498;margin-top:9px}
+.warning{color:#d4dcdf;text-align:center;font-size:clamp(14px,2.5vw,21px);margin:18px 0;
+  text-shadow:0 0 10px rgba(220,235,238,.25);animation:warning 2.4s infinite}
+.file{background:rgba(0,0,0,.72);border-left:3px solid #9ca9ae;padding:13px 16px;font-size:12px;line-height:1.8;color:#b9c2c5;position:relative}
+.progress{height:5px;background:#202527;margin-top:16px;overflow:hidden}
+.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#7e8a8f,#e1e7e9);transition:width .35s}
+.step{display:none;padding:clamp(16px,3vw,28px);margin-top:18px;background:rgba(0,0,0,.57);
+  border:1px solid var(--line);border-left:3px solid #8d9a9f;position:relative}
+.step.active{display:block;animation:appear .35s ease-out}
+.step h2{font-size:clamp(17px,3vw,24px);color:#dce2e4;margin:0 0 12px;text-shadow:0 0 12px rgba(215,230,234,.12)}
+.step p{line-height:1.65;font-size:14px}
+.kicker{font-size:10px;color:#8b989c;letter-spacing:.18em;margin-bottom:8px}
+.small{font-size:11px!important;color:#909b9f}
+input[type="text"],input[type="number"],textarea{width:100%;padding:13px;background:#050607;color:#edf1f2;
+  border:1px solid #596469;outline:none;font:inherit;margin:10px 0;border-radius:0}
+input:focus,textarea:focus{border-color:#d2dcdf;box-shadow:0 0 12px rgba(210,225,230,.13)}
+button{font:inherit;color:#e7ecee;background:#171b1d;border:1px solid #89969b;padding:12px 18px;cursor:pointer;
+  transition:background .15s,transform .15s}
+button:hover{background:#30373a;transform:translateY(-1px)}
+button:focus-visible,.tile:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.action-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px}
+.feedback{min-height:22px;color:#d7e0e2;font-size:12px;margin-top:12px}
+.quiz-q{padding:13px 0;border-bottom:1px dashed #3b4447}
+.quiz-q p{margin:0 0 9px;font-weight:bold}
+.quiz-q label{display:block;padding:5px 0;cursor:pointer;font-size:13px}
+.quiz-q input{accent-color:#bfc9cc;margin-right:8px}
+#peekBoard{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:5px;margin:16px 0}
+.tile{aspect-ratio:1;min-width:0;padding:0;position:relative;overflow:hidden;background:#090b0c;border:1px solid #394246;
+  display:grid;place-items:center;cursor:crosshair;touch-action:manipulation}
+.tile:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 4px,rgba(220,230,232,.09) 5px,transparent 6px);pointer-events:none}
+.tile .secret{opacity:0;transform:scale(.45) rotate(-15deg);font-size:clamp(14px,3vw,25px);filter:drop-shadow(0 0 5px #e4ecee);transition:opacity .12s,transform .12s}
+.tile.revealed .secret,.tile:focus-visible .secret{opacity:1;transform:scale(1) rotate(0)}
+.tile.found{border-color:#e2e9eb;background:#252c2f}
+#peekBoard.active-game .tile:hover .secret{opacity:1;transform:scale(1) rotate(0)}
+#peekBoard.active-game .tile{cursor:crosshair}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:#a5b0b4}
+#cipherKey{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin:14px 0}
+.keycell{padding:8px 4px;text-align:center;background:#090b0c;border:1px solid #424d51;font-size:12px}
+.keycell b{display:block;color:#e1e7e9;font-size:17px;margin-bottom:4px}
+.cipher{padding:14px;background:#030405;border:1px dashed #8d9a9f;overflow-wrap:anywhere;line-height:1.9;letter-spacing:.08em;color:#d8e0e2}
+#redNumbers{display:flex;justify-content:center;align-items:center;gap:9px;flex-wrap:wrap;min-height:105px;margin:18px 0;padding:15px;background:#030405;border:1px solid #414b4f}
+.number-pop{font-size:clamp(25px,5vw,42px);font-weight:bold;min-width:42px;text-align:center;text-shadow:0 0 12px currentColor}
+.number-pop.red{color:#f0f3f4}.number-pop.white{color:#b4bec2}.number-pop.dim{color:#4e585c}
+#startRhythm{display:block;margin:0 auto}
+.glitch-box{position:relative;padding:18px;background:#030405;border:1px solid #69767b;overflow:hidden}
+.glitch-box:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.28;
+ background:repeating-linear-gradient(0deg,transparent 0 8px,#dfe8ea10 9px 10px)}
+.fragments{font-size:clamp(20px,4vw,32px);letter-spacing:.12em;color:#e0e6e8;text-align:center;padding:18px 0}
+#fractureCanvas{width:100%;height:160px;display:block;border:1px solid #59676c;background:#050607;touch-action:manipulation;cursor:pointer}
+#success{display:none;text-align:center;padding:28px 0}
+#success h2{font-size:clamp(25px,5vw,42px);color:#e3e9eb;text-shadow:0 0 20px rgba(220,235,238,.3)}
+#success p{line-height:1.8}
+.footer{text-align:center;color:#788589;font-size:10px;line-height:1.8;margin-top:28px}
+.crack{position:fixed;inset:0;z-index:9;pointer-events:none;opacity:0;transition:opacity .3s;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(230,240,242,.3) 4px,transparent 5px);mix-blend-mode:screen}
+.crack svg{display:none}
+.crack.show{opacity:.8;animation:staticFlash .12s steps(2) infinite}
+body.glitch .brand{text-shadow:3px 0 #fff,-3px 0 #77858a,0 0 20px #d9e2e5}
+body.glitch #container{border-color:#dce5e8}
+body.error-flash #container{box-shadow:0 0 35px rgba(230,240,242,.28),inset 0 0 45px rgba(230,240,242,.08)}
+@keyframes appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes warning{0%,90%,100%{opacity:1}93%{opacity:.65}96%{opacity:.9}}
+@keyframes brandJitter{0%,94%,100%{transform:translateX(0)}95%{transform:translateX(2px)}97%{transform:translateX(-2px)}}
+@keyframes staticFlash{0%{transform:translateX(-2px);filter:contrast(1.3)}100%{transform:translateX(2px);filter:contrast(.7)}}
+@media(max-width:560px){#peekBoard{grid-template-columns:repeat(6,minmax(0,1fr))}#cipherKey{grid-template-columns:repeat(4,minmax(0,1fr))}.subtitle{letter-spacing:.1em}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="glow one"></div><div class="glow two"></div>
+<div class="crack" id="crack" aria-hidden="true">
+<svg viewBox="0 0 1000 700" preserveAspectRatio="none">
+<g fill="none" stroke="#ffe8ed" stroke-width="1.5" opacity=".8">
+<path d="M500 0 L478 92 L510 147 L465 204 L486 258 L421 312 L450 366 L398 420 L420 476 L361 538 L382 594 L345 700"/>
+<path d="M480 92 L405 108 L362 76 M510 147 L586 120 L620 65 M465 204 L390 230 L330 207 M486 258 L563 286 L610 255 M421 312 L355 300 L304 336 M450 366 L526 390 L571 364 M398 420 L320 446 L270 414 M420 476 L493 508 L548 485 M361 538 L292 564 L248 540"/>
+</g></svg></div>
+<main id="container">
+<header>
+<div class="brand">GREEN VALLEY PRODUCTS</div>
+<div class="subtitle">ARCHIVES BIOLOGIQUES INTERNES // TERMINAL 02</div>
+</header>
+<div class="warning">⚠ ACCÈS NON AUTORISÉ DÉTECTÉ ⚠</div>
+<div class="file">DOSSIER : GVP-SEC-002<br>STATUT : CONFIDENTIEL<br>NIVEAU D'ACCÈS REQUIS : C+<br>SESSION : <span id="sessionCode">INITIALISATION…</span>
+<div class="progress" aria-label="Progression"><span id="progressBar"></span></div></div>
+
+<section class="step active" id="step1">
+<div class="kicker">CHALLENGE 01 / 05 — CONNAISSANCES INTERNES</div>
+<h2>Épreuve 01 : contrôle de conformité</h2>
+<p>Répondez au questionnaire à partir des informations publiées par Green Valley Products. <b>4 bonnes réponses sur 5</b> sont nécessaires.</p>
+<form id="quizForm">
+<div class="quiz-q"><p>1. En quelle année l'entreprise affirme-t-elle avoir été fondée ?</p>
+<label><input type="radio" name="q1" value="2001"> 2001</label><label><input type="radio" name="q1" value="2003"> 2003</label><label><input type="radio" name="q1" value="2008"> 2008</label></div>
+<div class="quiz-q"><p>2. Quelle est la référence du produit du secteur H-15 ?</p>
+<label><input type="radio" name="q2" value="GVP-H15"> GVP-H15</label><label><input type="radio" name="q2" value="GVP-A2"> GVP-A2</label><label><input type="radio" name="q2" value="GVP-E8"> GVP-E8</label></div>
+<div class="quiz-q"><p>3. Où le secteur E-8 est-il produit ?</p>
+<label><input type="radio" name="q3" value="Jardin-6"> Zone Jardin-6</label><label><input type="radio" name="q3" value="Aqua"> Installation Aqua</label><label><input type="radio" name="q3" value="Jugement"> Couloir du Jugement</label></div>
+<div class="quiz-q"><p>4. Combien de laboratoires génétiques sont annoncés ?</p>
+<label><input type="radio" name="q4" value="92"> 92</label><label><input type="radio" name="q4" value="284"> 284</label><label><input type="radio" name="q4" value="1600000"> 1 600 000</label></div>
+<div class="quiz-q"><p>5. Quelle entité est associée au secteur A-2 ?</p>
+<label><input type="radio" name="q5" value="08"> Entité 08</label><label><input type="radio" name="q5" value="12"> Entité 12</label><label><input type="radio" name="q5" value="21"> Entité 21</label></div>
+<div class="action-row"><span class="small">GVP QUIZ ENGINE v2.04</span><button type="submit">VALIDER LES RÉPONSES →</button></div>
+<div class="feedback" id="quizFeedback" aria-live="polite"></div>
+</form>
+</section>
+
+<section class="step" id="step2">
+<div class="kicker">CHALLENGE 02 / 05 — INSPECTION VISUELLE</div>
+<h2>Épreuve 02 : les formes non conformes</h2>
+<p>Déplacez le curseur sur les cases pour révéler leur contenu. Sur écran tactile, touchez les cases. Comptez uniquement les <b>organismes déformés avec des pointes</b>, puis entrez leur nombre.</p>
+<div class="legend"><span>□ case non inspectée</span><span>✹ organisme déformé</span><span>○ échantillon normal</span></div>
+<div id="peekBoard" aria-label="Grille d'inspection"></div>
+<label for="ballCount" class="small">NOMBRE D'ORGANISMES DÉFORMÉS</label>
+<input id="ballCount" type="number" min="0" max="48" placeholder="Saisir un nombre…">
+<div class="action-row"><span class="small" id="peekStatus">48 ÉCHANTILLONS À INSPECTER</span><button id="checkBalls">CONFIRMER →</button></div>
+<div class="feedback" id="ballsFeedback" aria-live="polite"></div>
+</section>
+
+<section class="step" id="step3">
+<div class="kicker">CHALLENGE 03 / 05 — DÉCODAGE</div>
+<h2>Épreuve 03 : alphabet de substitution</h2>
+<p>Chaque symbole correspond à une lettre. Les espaces sont conservés. Décodez toute la séquence et saisissez la phrase obtenue.</p>
+<div id="cipherKey"></div>
+<div class="cipher" id="cipherText"></div>
+<input id="cipherAnswer" type="text" autocomplete="off" placeholder="Phrase décodée…">
+<div class="action-row"><span class="small">CIPHER MODE // 78 CARACTÈRES</span><button id="checkCipher">DÉCODER →</button></div>
+<div class="feedback" id="cipherFeedback" aria-live="polite"></div>
+</section>
+
+<section class="step" id="step4">
+<div class="kicker">CHALLENGE 04 / 05 — SYNCHRONISATION</div>
+<h2>Épreuve 04 : journal de pulsation</h2>
+<p>Une série de <b>10 nombres</b> apparaîtra à intervalles réguliers. Mémorisez uniquement les nombres affichés en blancs, dans l'ordre, puis saisissez-les séparés par des virgules.</p>
+<div id="redNumbers" aria-live="polite"><span class="small">PRÊT À SYNCHRONISER</span></div>
+<button id="startRhythm">LANCER LA SÉQUENCE</button>
+<input id="rhythmAnswer" type="text" autocomplete="off" placeholder="Ex. : 12, 4, 27">
+<div class="action-row"><span class="small" id="rhythmStatus">10 IMPULSIONS · UNE SEULE LECTURE</span><button id="checkRhythm" disabled>VALIDER →</button></div>
+<div class="feedback" id="rhythmFeedback" aria-live="polite"></div>
+</section>
+
+<section class="step" id="step5">
+<div class="kicker">CHALLENGE 05 / 05 — INTÉGRITÉ DU FICHIER</div>
+<h2>Épreuve 05 : le fragment brisé</h2>
+<p>Le fichier a été endommagé. Retrouvez le mot dissimulé : cliquez sur les fragments pour les faire pivoter. Les quatre fragments doivent former un seul mot lisible, de gauche à droite.</p>
+<div class="glitch-box">
+<div class="fragments" id="fragments">
+<button type="button" class="fragment" data-i="0">V</button>
+<button type="button" class="fragment" data-i="1">I</button>
+<button type="button" class="fragment" data-i="2">V</button>
+<button type="button" class="fragment" data-i="3">A</button>
+</div>
+<p class="small" style="text-align:center">INDICE : ce que l'entreprise prétend préserver.</p>
+</div>
+<div class="action-row"><span class="small">FILE RECOVERY // GVP-FRAG-04</span><button id="checkFragments">VALIDER LE FRAGMENT →</button></div>
+<div class="feedback" id="fragmentFeedback" aria-live="polite"></div>
+</section>
+
+<section id="success">
+<h2>ACCÈS AUTORISÉ</h2>
+<p>Les cinq contrôles ont été validés.<br>Connexion au serveur biologique…<br>Récupération de l'archive interne…</p>
+<p class="small">REDIRECTION VERS HUB.HTML</p>
+</section>
+<footer class="footer">GREEN VALLEY PRODUCTS • DÉPARTEMENT DE CROISSANCE ORGANIQUE<br>TOUTE ACTIVITÉ EST ENREGISTRÉE // GVP-SEC-002</footer>
+</main>
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const steps = [...document.querySelectorAll(".step")];
+let currentStep = 0;
+const answers = {quiz:false,balls:false,cipher:false,rhythm:false,fragments:false};
+$("sessionCode").textContent = "GVP-" + Math.random().toString(36).slice(2,8).toUpperCase();
+
+function showStep(n){
+  steps.forEach((el,i)=>el.classList.toggle("active",i===n));
+  currentStep=n;
+  $("progressBar").style.width=(n/5*100)+"%";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function completeStep(n){
+  $("progressBar").style.width=((n+1)/5*100)+"%";
+  if(n<4){showStep(n+1);return;}
+  steps.forEach(el=>el.classList.remove("active"));
+  $("success").style.display="block";
+  $("progressBar").style.width="100%";
+  setTimeout(()=>{window.location.href="hub.html";},4000);
+}
+function wrong(msg, id){
+  $(id).textContent=msg;
+  document.body.classList.add("error-flash");
+  $("crack").classList.add("show");
+  if(!matchMedia("(prefers-reduced-motion: reduce)").matches) document.body.classList.add("glitch");
+  setTimeout(()=>{document.body.classList.remove("error-flash","glitch");$("crack").classList.remove("show");},550);
+}
+
+$("quizForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const correct={q1:"2003",q2:"GVP-H15",q3:"Aqua",q4:"92",q5:"12"};
+  let score=0;
+  for(const [name,value] of Object.entries(correct)){
+    const chosen=document.querySelector(`input[name="${name}"]:checked`);
+    if(chosen&&chosen.value===value) score++;
+  }
+  if(score>=4){answers.quiz=true;$("quizFeedback").textContent=`CONFORMITÉ ACCEPTÉE : ${score}/5`;completeStep(0);}
+  else{wrong(`ÉCHEC DE CONFORMITÉ : ${score}/5. Il faut obtenir au moins 4/5.`,"quizFeedback");}
+});
+
+const board=$("peekBoard");
+const sampleCount=48;
+const malformedCount=11;
+const malformedSet=new Set();
+while(malformedSet.size<malformedCount) malformedSet.add(Math.floor(Math.random()*sampleCount));
+for(let i=0;i<sampleCount;i++){
+  const b=document.createElement("button");
+  b.type="button";b.className="tile";b.setAttribute("aria-label",`Échantillon ${i+1}`);
+  const malformed=malformedSet.has(i);
+  b.dataset.malformed=malformed?"1":"0";
+  b.innerHTML=`<span class="secret">${malformed?"✹":"○"}</span>`;
+  b.addEventListener("pointerenter",()=>b.classList.add("revealed"));
+  b.addEventListener("click",()=>b.classList.toggle("revealed"));
+  board.appendChild(b);
+}
+$("checkBalls").addEventListener("click",()=>{
+  const val=Number($("ballCount").value);
+  if($("ballCount").value.trim()!==""&&val===malformedCount){
+    answers.balls=true;$("ballsFeedback").textContent="COMPTAGE ACCEPTÉ.";completeStep(1);
+  }else wrong("RÉSULTAT INCOHÉRENT. Inspectez chaque échantillon.","ballsFeedback");
+});
+
+const alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const symbols=["⌘","∆","⌖","⟁","⊗","⋈","⌬","⍟","⎔","⏣","⍜","⌑","⎊","⏥","⍣","⌗","⎈","⍥","⏢","⌭","⍙","⊛","⎋","⌯","⍢","⏦"];
+const secretMessage="LA QUALITE DES PRODUITS NE DOIT JAMAIS PASSER AVANT LA SECURITE DES SUJETS";
+const encodeChar=c=>c===" "?"  ":symbols[alphabet.indexOf(c)];
+$("cipherKey").innerHTML=alphabet.split("").map((c,i)=>`<div class="keycell"><b>${symbols[i]}</b>${c}</div>`).join("");
+$("cipherText").textContent=secretMessage.split("").map(encodeChar).join("");
+$("checkCipher").addEventListener("click",()=>{
+  const normalized=$("cipherAnswer").value.trim().toLocaleUpperCase("fr").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\s+/g," ");
+  if(normalized===secretMessage){
+    answers.cipher=true;$("cipherFeedback").textContent="DÉCRYPTAGE ACCEPTÉ.";completeStep(2);
+  }else wrong("CLÉ INVALIDE. Respectez les espaces et vérifiez la table.","cipherFeedback");
+});
+
+let redSequence=[], rhythmStarted=false;
+$("startRhythm").addEventListener("click",()=>{
+  if(rhythmStarted)return;
+  rhythmStarted=true;redSequence=[];
+  $("startRhythm").disabled=true;$("checkRhythm").disabled=true;$("rhythmAnswer").value="";
+  const display=$("redNumbers");display.innerHTML="";
+  let i=0;
+  const tick=()=>{
+    if(i>=10){display.innerHTML='<span class="small">SÉQUENCE TERMINÉE // SAISIE REQUISE</span>';$("checkRhythm").disabled=false;$("rhythmStatus").textContent="SÉQUENCE TERMINÉE";return;}
+    const value=1+Math.floor(Math.random()*49);
+    const isRed=Math.random()<.4;
+    if(isRed)redSequence.push(value);
+    display.innerHTML=`<span class="number-pop ${isRed?"red":"white"}">${String(value).padStart(2,"0")}</span>`;
+    i++;setTimeout(tick,850);
+  };
+  tick();
+});
+$("checkRhythm").addEventListener("click",()=>{
+  const given=$("rhythmAnswer").value.split(/[,;\s]+/).filter(Boolean).map(Number);
+  if(given.length===redSequence.length&&given.every((n,i)=>n===redSequence[i])){
+    answers.rhythm=true;$("rhythmFeedback").textContent="SYNCHRONISATION ACCEPTÉE.";completeStep(3);
+  }else wrong("SÉQUENCE INCORRECTE. Respectez l'ordre des nombres blancs.","rhythmFeedback");
+});
+
+
+const fragmentAngles=[90,180,270,180];
+document.querySelectorAll(".fragment").forEach(btn=>{
+  btn.style.minWidth="54px";btn.style.margin="4px";btn.style.fontSize="28px";
+  btn.style.transform=`rotate(${fragmentAngles[Number(btn.dataset.i)]}deg)`;
+  btn.addEventListener("click",()=>{
+    const i=Number(btn.dataset.i);
+    fragmentAngles[i]=(fragmentAngles[i]+90)%360;
+    btn.style.transform=`rotate(${fragmentAngles[i]}deg)`;
+  });
+});
+$("checkFragments").addEventListener("click",()=>{
+  if(fragmentAngles.every(a=>a===0)){
+    answers.fragments=true;$("fragmentFeedback").textContent="RESTAURÉ : VIVA.";completeStep(4);
+  }else wrong("CORROMPU. Réorientez chaque caractère.","fragmentFeedback");
+});
+</script>
+</body>
+</html>
