@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>HUB</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:black;
+    overflow:hidden;
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#hub{
+
+    position:relative;
+    z-index:10;
+
+}
+
+#hub img{
+
+    max-width:600px;
+    max-height:600px;
+
+    animation:
+    float 6s ease-in-out infinite;
+
+    filter:
+    drop-shadow(0 0 20px #550000)
+    drop-shadow(0 0 40px #aa0000)
+    drop-shadow(0 0 120px #ff0000);
+
+}
+
+#aura{
+
+    position:absolute;
+
+    inset:-30px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(255,0,0,.3),
+        rgba(255,0,0,.05),
+        transparent
+    );
+
+    filter:blur(40px);
+
+    z-index:-1;
+
+    animation:
+    pulse 3s infinite;
+
+}
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(0.95);
+        opacity:.5;
+    }
+
+    50%{
+        transform:scale(1.08);
+        opacity:1;
+    }
+
+    100%{
+        transform:scale(0.95);
+        opacity:.5;
+    }
+
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+.char{
+
+    position:fixed;
+
+    color:white;
+
+    font-family:Consolas, monospace;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    text-shadow:
+    0 0 5px white;
+
+    animation:
+    appear 3s forwards;
+
+}
+
+@keyframes appear{
+
+    0%{
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    85%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="hub">
+
+<div id="aura"></div>
+
+hub.png
+
+</div>
+
+<script>
+
+const chars =
+"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*+=<>[]{}";
+
+function spawnCharacter(){
+
+    const div =
+    document.createElement("div");
+
+    div.className = "char";
+
+    div.innerText =
+    chars[
+        Math.floor(
+            Math.random() * chars.length
+        )
+    ];
+
+    div.style.left =
+    Math.random()*100 + "vw";
+
+    div.style.top =
+    Math.random()*100 + "vh";
+
+    div.style.fontSize =
+    (10 + Math.random()*25) + "px";
+
+    document.body.appendChild(div);
+
+    setTimeout(() => {
+
+        div.remove();
+
+    },3000);
+
+}
+
+setInterval(
+
+    spawnCharacter,
+
+    80
+
+);
+
+</script>
+
+</body>
+</html>
