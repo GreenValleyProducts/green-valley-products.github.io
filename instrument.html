@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salle d'Instrumentation</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Consolas, monospace;
+}
+
+body{
+    background:black;
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(
+        circle at center,
+        rgba(255,255,255,.05),
+        transparent 70%
+    );
+    z-index:-1;
+}
+
+header{
+    text-align:center;
+    padding:40px;
+    border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+h1{
+    font-size:60px;
+    letter-spacing:4px;
+}
+
+.subtitle{
+    margin-top:10px;
+    opacity:.6;
+}
+
+.gallery{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:35px;
+    padding:50px;
+}
+
+.card{
+
+    width:520px;
+
+    background:
+    rgba(255,255,255,.03);
+
+    border:1px solid
+    rgba(255,255,255,.08);
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:
+    translateY(-5px);
+
+    box-shadow:
+    0 0 30px
+    rgba(255,255,255,.1);
+
+}
+
+.card img{
+
+    width:100%;
+    height:500px;
+
+    object-fit:cover;
+
+}
+
+.label{
+
+    text-align:center;
+
+    padding:15px;
+
+    background:
+    rgba(0,0,0,.5);
+
+    letter-spacing:2px;
+
+}
+
+.end{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:30px;
+
+    margin-bottom:80px;
+
+}
+
+.end button{
+
+    padding:20px 50px;
+
+    font-size:24px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        #222,
+        #000
+    );
+
+    transition:.3s;
+
+}
+
+.end button:hover{
+
+    transform:scale(1.05);
+
+}
+
+footer{
+
+    text-align:center;
+
+    padding:30px;
+
+    opacity:.4;
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>SALLE D'INSTRUMENTATION</h1>
+
+<div class="subtitle">
+Archives internes • Niveau 4
+</div>
+
+</header>
+
+<div class="gallery">
+
+<div class="card">
+<img src="object1.png">
+<div class="label">OBJET-01</div>
+</div>
+
+<div class="card">
+<img src="object2.png">
+<div class="label">OBJET-02</div>
+</div>
+
+<div class="card">
+<img src="object3.png">
+<div class="label">OBJET-03</div>
+</div>
+
+<div class="card">
+<img src="object4.png">
+<div class="label">OBJET-04</div>
+</div>
+
+<div class="card">
+<img src="object5.png">
+<div class="label">OBJET-05</div>
+</div>
+
+<div class="card">
+<img src="object6.png">
+<div class="label">OBJET-06</div>
+</div>
+
+<div class="card">
+<img src="animal1.png">
+<div class="label">SPÉCIMEN-01</div>
+</div>
+
+<div class="card">
+<img src="animal2.png">
+<div class="label">SPÉCIMEN-02</div>
+</div>
+
+<div class="card">
+<img src="animal3.png">
+<div class="label">SPÉCIMEN-03</div>
+</div>
+
+<div class="card">
+<img src="animal4.png">
+<div class="label">SPÉCIMEN-04</div>
+</div>
+
+</div>
+
+<div class="end">
+
+<button onclick="askPassword()">
+La fin est proche
+</button>
+
+</div>
+
+<footer>
+
+GREEN VALLEY PRODUCTS • DOSSIERS CONFIDENTIELS
+
+</footer>
+
+<script>
+
+function askPassword(){
+
+    let pass = prompt(
+    "Mot de passe requis"
+    );
+
+    if(pass === "2152"){
+
+        window.location.href =
+        "end.html";
+
+    }else if(pass !== null){
+
+        alert(
+        "Accès refusé"
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
