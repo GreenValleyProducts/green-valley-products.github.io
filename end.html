@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>FIN</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Consolas, monospace;
+}
+
+body{
+    background:#0b0908;
+    color:#e3d8c8;
+    min-height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle at center,
+        rgba(255,120,60,.05),
+        transparent 60%
+    );
+
+    z-index:-2;
+}
+
+.burn{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle at 15% 10%,
+        transparent 0,
+        transparent 70px,
+        #000 110px
+    ),
+    radial-gradient(
+        circle at 80% 20%,
+        transparent 0,
+        transparent 90px,
+        #000 130px
+    ),
+    radial-gradient(
+        circle at 90% 80%,
+        transparent 0,
+        transparent 80px,
+        #000 120px
+    ),
+    radial-gradient(
+        circle at 10% 85%,
+        transparent 0,
+        transparent 120px,
+        #000 180px
+    );
+
+    pointer-events:none;
+
+}
+
+.paper{
+
+    width:1000px;
+    max-width:90%;
+
+    background:
+    linear-gradient(
+        #e4d4b8,
+        #c4b497
+    );
+
+    color:#2a1a10;
+
+    padding:60px;
+
+    border-radius:4px;
+
+    box-shadow:
+    0 0 40px rgba(255,150,50,.15);
+
+    position:relative;
+
+}
+
+.paper::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    repeating-linear-gradient(
+        0deg,
+        rgba(0,0,0,.02) 0px,
+        rgba(0,0,0,.02) 1px,
+        transparent 2px,
+        transparent 5px
+    );
+
+    pointer-events:none;
+
+}
+
+h1{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+    font-size:56px;
+
+}
+
+p{
+
+    font-size:22px;
+
+    line-height:1.9;
+
+    margin-bottom:20px;
+
+}
+
+.signature{
+
+    margin-top:35px;
+
+    text-align:right;
+
+    font-size:20px;
+
+}
+
+.char{
+
+    position:fixed;
+
+    color:rgba(255,255,255,.08);
+
+    pointer-events:none;
+
+    animation:fade 6s linear forwards;
+
+}
+
+@keyframes fade{
+
+    from{
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    to{
+        opacity:0;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="burn"></div>
+
+<div class="paper">
+
+<h1>FÉLICITATIONS</h1>
+
+<p>
+Cher spectateur,
+</p>
+
+<p>
+Vous venez de résoudre cet ARG ainsi que l'ensemble des énigmes permettant d'accéder aux archives cachées de Green Valley Products.
+</p>
+
+<p>
+Tout au long de cette expérience, vous avez découvert une entreprise fictive dont les pratiques deviennent progressivement de plus en plus inquiétantes. Derrière cette histoire se cache cependant une réflexion bien réelle sur certaines dérives possibles de l'industrie agroalimentaire moderne.
+</p>
+
+<p>
+L'objectif de ce projet n'était pas seulement de raconter une histoire d'horreur. Il visait également à attirer l'attention sur des sujets réels : la transparence alimentaire, les méthodes de production, les scandales sanitaires, la confiance accordée aux grandes entreprises et la manière dont certaines informations peuvent être cachées au grand public.
+</p>
+
+<p>
+Des entreprises internationales ont déjà été critiquées à plusieurs reprises au cours de leur histoire pour diverses controverses concernant la santé publique, l'environnement, les conditions de travail ou encore leurs pratiques commerciales. Cette œuvre invite donc à développer un regard critique sur les produits que nous consommons quotidiennement ainsi que sur les systèmes qui les produisent.
+</p>
+
+<p>
+Si cette aventure vous a poussé à vous informer davantage, à poser des questions ou à remettre en cause certaines évidences, alors son objectif est atteint.
+</p>
+
+<p>
+Merci d'avoir exploré ces archives jusqu'à la fin.
+</p>
+
+<div class="signature">
+— Green Valley Products Archive Reconstruction Project
+</div>
+
+</div>
+
+<script>
+
+const chars =
+"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+function spawn(){
+
+    const d =
+    document.createElement("div");
+
+    d.className = "char";
+
+    let txt = "";
+
+    const len =
+    3 + Math.floor(
+        Math.random()*12
+    );
+
+    for(let i=0;i<len;i++){
+
+        txt += chars[
+            Math.floor(
+                Math.random()*chars.length
+            )
+        ];
+
+    }
+
+    d.innerText = txt;
+
+    d.style.left =
+    Math.random()*100 + "vw";
+
+    d.style.top =
+    Math.random()*100 + "vh";
+
+    d.style.fontSize =
+    10 + Math.random()*25 + "px";
+
+    document.body.appendChild(d);
+
+    setTimeout(()=>{
+        d.remove();
+    },6000);
+
+}
+
+setInterval(
+    spawn,
+    300
+);
+
+</script>
+
+</body>
+</html>
